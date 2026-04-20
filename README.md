@@ -1,32 +1,35 @@
 # git-bridge
 
-## 用法
+[中文说明](./README.zh-CN.md)
 
-### 内部：导出 main 与指定分支的 bundle（给外部用）
+## Usage
+
+### Internal: export `main.bundle`, and optionally the target branch bundle for external use
 
 ```powershell
+./internal-export.ps1
 ./internal-export.ps1 -BranchName "branch-name"
 ```
 
-### 外部：用 main 与分支 bundle 对齐仓库并检出开发分支（开工前）
+### External: align the repository with `main` and branch bundles, then check out the development branch
 
 ```bash
 ./external-align-before-dev.sh "branch-name"
 ```
 
-### 外部：用 main.bundle 更新 main，并把 main 合并进开发分支
+### External: update `main` from `main.bundle`, then merge `main` into the development branch
 
 ```bash
 ./external-sync-main.sh "branch-name"
 ```
 
-### 外部：把开发分支打成回传 bundle（给内部合并）
+### External: export the development branch as a return bundle for internal merge
 
 ```bash
 ./external-export.sh "branch-name"
 ```
 
-### 内部：导入外部 bundle 到指定分支，再把 main 合并进该分支
+### Internal: import the external bundle into the target branch, then merge `main` into that branch
 
 ```powershell
 ./internal-import-and-merge.ps1 -BranchName "branch-name"
